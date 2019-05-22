@@ -1,0 +1,1 @@
+C:37:"PHPUnit\Runner\DefaultTestResultCache":282:{a:2:{s:7:"defects";a:1:{s:104:"HighSolutions\LaravelMailerDaemonCatcher\Test\unit\CatchCommandTest::nothing_happened_when_empty_mailbox";i:4;}s:5:"times";a:1:{s:104:"HighSolutions\LaravelMailerDaemonCatcher\Test\unit\CatchCommandTest::nothing_happened_when_empty_mailbox";d:1.886;}}}

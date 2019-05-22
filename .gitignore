@@ -1,0 +1,7 @@
+/tests/temp
+/vendor
+/environments
+composer.phar
+composer.lock
+.DS_Store
+*.sqlite
