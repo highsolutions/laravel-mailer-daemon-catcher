@@ -20,7 +20,7 @@ Or by adding the following line to the `require` section of your Laravel webapp'
 
 ```javascript
     "require": {
-        "HighSolutions/laravel-mailer-daemon-catcher": "1.0"
+        "highsolutions/laravel-mailer-daemon-catcher": "1.*"
     }
 ```
 
