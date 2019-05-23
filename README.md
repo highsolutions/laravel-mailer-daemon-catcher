@@ -20,7 +20,7 @@ Or by adding the following line to the `require` section of your Laravel webapp'
 
 ```javascript
     "require": {
-        "HighSolutions/laravel-mailer-daemon-catcher": "*"
+        "HighSolutions/laravel-mailer-daemon-catcher": "1.0"
     }
 ```
 
@@ -35,16 +35,70 @@ Then, if you are using Laravel <= 5.4, update `config/app.php` by adding an entr
 ];
 ```
 
-
-Configuration
-------------
-
-| Name                             | Description                                                                                | Default                                              |
-|----------------------------------|--------------------------------------------------------------------------------------------|------------------------------------------------------|
-
-
 Usage
 ------------
+
+Check IMAP inbox
+========================
+
+To check is any unseen Mailer Daemon message in the inbox, execute this command:
+
+```bash
+    php artisan mailer-daemon:catch
+```
+
+Package gets configuration from `config/mail.php`.
+
+We recommend add this command to `app/Console/Kernel.php` for scheduling this task:
+
+```php
+	$schedule->command('mailer-daemon:catch')->hourly();
+```
+
+Handle Mailer Daemon messages
+========================
+
+When command finds new messages, it will fire a `HighSolutions\LaravelMailderDaemonCatcher\Events\MailerDaemonMessageReceived` event.
+
+To capture this event create a listener for this event in `App/Providers/EventServiceProvider.php`:
+
+```php
+	protected $listen = [
+		'HighSolutions\LaravelMailderDaemonCatcher\Events\MailerDaemonMessageReceived' => [
+			'App\Listeners\MailerDaemonMessageListener',
+		],
+	];
+```
+
+In that example create a listener in `app/Listeners/MailerDaemonMessageListener.php` e.g.:
+
+```php
+<?php
+
+namespace App\Listeners;
+
+use HighSolutions\LaravelMailderDaemonCatcher\Events\MailerDaemonMessageReceived;
+
+class MailerDaemonMessageListener
+{
+
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Handle the event.
+     *
+     * @param  \HighSolutions\LaravelMailderDaemonCatcher\Events\MailerDaemonMessageReceived  $event
+     * @return void
+     */
+    public function handle(MailerDaemonMessageReceived $event)
+    {
+        // Access the message using $event->message...
+    }
+}
+```
 
 Testing
 ---------

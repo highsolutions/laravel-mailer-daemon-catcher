@@ -12,7 +12,8 @@
     "require": {
         "php": ">=5.4.0",
         "illuminate/console": "5.*",
-        "illuminate/support": "5.*"
+        "illuminate/support": "5.*",
+        "webklex/laravel-imap": "^1.4"
     },
     "require-dev": {
         "phpunit/phpunit": "6.*|7.*|8.*",

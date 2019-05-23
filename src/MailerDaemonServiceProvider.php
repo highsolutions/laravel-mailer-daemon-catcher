@@ -2,9 +2,11 @@
 
 namespace HighSolutions\LaravelMailerDaemonCatcher;
 
-use Illuminate\Support\ServiceProvider;
 use HighSolutions\LaravelMailerDaemonCatcher\Commands\CatchCommand;
+use HighSolutions\LaravelMailerDaemonCatcher\Contracts\InboxReaderContract;
+use HighSolutions\LaravelMailerDaemonCatcher\Services\InboxReader;
 use HighSolutions\LaravelMailerDaemonCatcher\Services\MailerDaemonService;
+use Illuminate\Support\ServiceProvider;
 
 class MailerDaemonServiceProvider extends ServiceProvider
 {
@@ -15,7 +17,16 @@ class MailerDaemonServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->_serviceRegister();
+
         $this->_commandsRegister();
+    }
+
+    private function _serviceRegister()
+    {
+        $this->app->singleton(InboxReaderContract::class, function ($app) {
+            return new InboxReader;
+        });
     }
 
     private function _commandsRegister()
@@ -35,7 +46,7 @@ class MailerDaemonServiceProvider extends ServiceProvider
     private function initCommand($name, $class)
     {
         $this->app->singleton($class, function ($app) use ($class) {
-            return new $class(new MailerDaemonService);
+            return new $class(new MailerDaemonService(resolve(InboxReaderContract::class)));
         });
 
         $this->commands($class);
