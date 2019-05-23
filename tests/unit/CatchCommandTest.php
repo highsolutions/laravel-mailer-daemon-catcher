@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use HighSolutions\LaravelMailerDaemonCatcher\Contracts\InboxReaderContract;
 use HighSolutions\LaravelMailerDaemonCatcher\Events\MailerDaemonMessageReceived;
 use HighSolutions\LaravelMailerDaemonCatcher\Test\TestCase;
+use HighSolutions\LaravelMailerDaemonCatcher\Test\mocks\InboxReaderFail;
 use Illuminate\Support\Facades\Event;
 
 class CatchCommandTest extends TestCase
@@ -75,6 +76,16 @@ class CatchCommandTest extends TestCase
         $this->execute();
 
         Event::assertDispatched(MailerDaemonMessageReceived::class, 2);
+    }
+
+    /** @test */
+    public function no_error_when_email_config_is_invalid()
+    {
+        app()->bind(InboxReaderContract::class, InboxReaderFail::class);
+
+        $this->execute()        
+            ->expectsOutput('Couldn\'t connect to the e-mail inbox. Please check your e-mail configuration.')
+            ->assertExitCode(0);
     }
 
 }

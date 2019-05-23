@@ -38,7 +38,14 @@ class CatchCommand extends Command
      */
     public function handle()
     {
-        $messages = $this->service->checkNewMessages();
+        try {
+            $messages = $this->service->checkNewMessages();
+        }
+        catch(\Exception $ex) {
+            $this->error('Couldn\'t connect to the e-mail inbox. Please check your e-mail configuration.');
+            return;
+        }
+
         $messages->each(function ($message) {
             event(new MailerDaemonMessageReceived($message));
         });
