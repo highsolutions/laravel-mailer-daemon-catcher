@@ -1,5 +1,5 @@
 {
-    "name": "highsolutions/laravel-mailer-daemon-cather",
+    "name": "highsolutions/laravel-mailer-daemon-catcher",
     "description": "A Laravel package for signalizing that sent e-mails couldn't be delivered",
     "keywords": ["laravel", "email", "inbox", "mailer", "daemon"],
     "authors": [

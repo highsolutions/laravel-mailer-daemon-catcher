@@ -1,4 +1,4 @@
-Laravel Mailer Daemon Cather
+Laravel Mailer Daemon Catcher
 ================
 
  [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square)](https://opensource.org/licenses/MIT)
@@ -20,7 +20,7 @@ Or by adding the following line to the `require` section of your Laravel webapp'
 
 ```javascript
     "require": {
-        "HighSolutions/laravel-mailer-daemon-catcher": "1.0"
+        "highsolutions/laravel-mailer-daemon-catcher": "1.*"
     }
 ```
 
