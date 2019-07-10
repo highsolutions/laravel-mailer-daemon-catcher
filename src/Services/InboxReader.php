@@ -24,7 +24,7 @@ class InboxReader implements InboxReaderContract
 		    'host'          => config('mail.host'),
 		    'port'          => 993,
 		    'encryption'    => config('mail.encryption'),
-		    'validate_cert' => true,
+		    'validate_cert' => false,
 		    'username'      => config('mail.username'),
 		    'password'      => config('mail.password'),
 		    'protocol'      => 'imap'
