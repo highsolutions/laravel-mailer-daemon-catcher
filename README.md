@@ -112,6 +112,9 @@ vendor/bin/phpunit
 Changelog
 ---------
 
+1.1.0
+* Support Laravel 6.0
+
 1.0.0
 * Basic version
 
