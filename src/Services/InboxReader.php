@@ -21,13 +21,13 @@ class InboxReader implements InboxReaderContract
 	protected function connect()
 	{
 		$client = new Client([
-		    'host'          => config('mail.host'),
-		    'port'          => 993,
-		    'encryption'    => config('mail.encryption'),
-		    'validate_cert' => false,
-		    'username'      => config('mail.username'),
-		    'password'      => config('mail.password'),
-		    'protocol'      => 'imap'
+		    'host'          => config('mailer-daemon.host'),
+		    'port'          => intval(config('mailer-daemon.port')),
+		    'encryption'    => config('mailer-daemon.encryption'),
+		    'validate_cert' => config('mailer-daemon.validate_cert'),
+		    'username'      => config('mailer-daemon.username'),
+		    'password'      => config('mailer-daemon.password'),
+		    'protocol'      => config('mailer-daemon.protocol'),
 		]);
 
 		$client->connect();

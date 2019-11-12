@@ -19,6 +19,9 @@ class MailerDaemonServiceProvider extends ServiceProvider
     {
         $this->_serviceRegister();
 
+        $this->_configRegister('imap');
+        $this->_configRegister('mailer-daemon');
+
         $this->_commandsRegister();
     }
 
@@ -27,6 +30,15 @@ class MailerDaemonServiceProvider extends ServiceProvider
         $this->app->singleton(InboxReaderContract::class, function ($app) {
             return new InboxReader;
         });
+    }
+
+    private function _configRegister($name) 
+    {
+        $configPath = __DIR__ . '/../config/'. $name .'.php';
+        $this->mergeConfigFrom($configPath, $name);
+        $this->publishes([
+            $configPath => config_path($name. '.php')
+        ], 'config');
     }
 
     private function _commandsRegister()

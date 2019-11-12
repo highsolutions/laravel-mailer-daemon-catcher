@@ -112,6 +112,9 @@ vendor/bin/phpunit
 Changelog
 ---------
 
+1.2.0
+* Add custom config for more detailed configuration
+
 1.1.0
 * Support Laravel 6.0
 
