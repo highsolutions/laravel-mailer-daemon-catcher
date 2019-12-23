@@ -12,9 +12,9 @@ class MailerDaemonMessage extends Model
 
 	public static function createFromIMAP($message)
 	{
-		preg_match_all('/X-Failed-Recipients: ([a-zA-z0-9.-]+\@[a-zA-z0-9.-]+.[a-zA-Z]+)\\r\\n/mi', $message->getHeader(), $recipient, PREG_SET_ORDER, 0);
+		preg_match_all('/To: (.+)\\r\\n/m', $message->getTextBody(), $recipient, PREG_SET_ORDER, 0);
 		preg_match_all('/Date: (.+)\\r\\n/m', $message->getHeader(), $date, PREG_SET_ORDER, 0);
-		preg_match_all('/Subject: (.+)\\r\\n/m', $message->getAttachments()[1]->content, $subject, PREG_SET_ORDER, 0);
+		preg_match_all('/Subject: (.+)\\r\\n/m', $message->getTextBody(), $subject, PREG_SET_ORDER, 0);
 
 		return new static([
 			'from' => $message->to[0]->mail,

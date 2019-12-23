@@ -112,6 +112,10 @@ vendor/bin/phpunit
 Changelog
 ---------
 
+1.3.0
+* Change method to withdraw the recipient and subject method
+* FIX - Error concerning connection failure catched all exceptions
+
 1.2.0
 * Add custom config for more detailed configuration
 
