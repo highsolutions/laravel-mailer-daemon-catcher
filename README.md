@@ -112,6 +112,9 @@ vendor/bin/phpunit
 Changelog
 ---------
 
+1.4.0
+* Support Laravel 7.x and 8.x
+
 1.3.0
 * Change method to withdraw the recipient and subject method
 * FIX - Error concerning connection failure catched all exceptions
