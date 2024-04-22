@@ -41,7 +41,7 @@ class CatchCommand extends Command
         try {
             $messages = $this->service->checkNewMessages();
         }
-        catch(\Webklex\IMAP\Exceptions\ConnectionFailedException $ex) {
+        catch(\Exception $ex) {
             $this->error('Couldn\'t connect to the e-mail inbox. Please check your e-mail configuration.');
             return;
         }

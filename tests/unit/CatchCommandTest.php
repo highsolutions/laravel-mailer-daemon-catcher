@@ -1,12 +1,12 @@
 <?php
 
-namespace HighSolutions\LaravelMailerDaemonCatcher\Test\unit;
+namespace HighSolutions\LaravelMailerDaemonCatcher\tests\unit;
 
 use Carbon\Carbon;
 use HighSolutions\LaravelMailerDaemonCatcher\Contracts\InboxReaderContract;
 use HighSolutions\LaravelMailerDaemonCatcher\Events\MailerDaemonMessageReceived;
-use HighSolutions\LaravelMailerDaemonCatcher\Test\TestCase;
-use HighSolutions\LaravelMailerDaemonCatcher\Test\mocks\InboxReaderFail;
+use HighSolutions\LaravelMailerDaemonCatcher\tests\TestCase;
+use HighSolutions\LaravelMailerDaemonCatcher\tests\mocks\InboxReaderFail;
 use Illuminate\Support\Facades\Event;
 
 class CatchCommandTest extends TestCase
