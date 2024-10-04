@@ -44,9 +44,16 @@ class InboxReaderMock implements InboxReaderContract
 
 	public function addMessages($data)
 	{
+        $this->ensureDirectoryExists(dirname($this->stubPath));
+        
 		file_put_contents($this->stubPath, "<?php\n\nreturn " . var_export($data, true) . ";\n");
 	}
 
-
+    protected function ensureDirectoryExists($directory)
+    {
+        if (!is_dir($directory)) {
+            mkdir($directory, 0755, true);
+        }
+    }
 
 }
