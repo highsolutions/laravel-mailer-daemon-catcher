@@ -20,20 +20,11 @@ Or by adding the following line to the `require` section of your Laravel webapp'
 
 ```javascript
     "require": {
-        "highsolutions/laravel-mailer-daemon-catcher": "1.*"
+        "highsolutions/laravel-mailer-daemon-catcher": "^2.0"
     }
 ```
 
 And run `composer update` to install the package.
-
-Then, if you are using Laravel <= 5.4, update `config/app.php` by adding an entry for the service provider:
-
-```php
-'providers' => [
-    // ...
-    HighSolutions\LaravelMailderDaemonCatcher\MailerDaemonServiceProvider::class,
-];
-```
 
 Usage
 ------------
@@ -111,6 +102,12 @@ vendor/bin/phpunit
 
 Changelog
 ---------
+
+2.0.0
+* Support Laravel 9.x, 10.x, and 11.x and Webklex/IMAP ^5.3
+
+1.6.0
+* Last version supporting Webklex/IMAP ^1.6
 
 1.4.0
 * Support Laravel 7.x and 8.x

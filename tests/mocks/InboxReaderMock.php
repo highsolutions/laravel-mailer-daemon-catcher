@@ -1,7 +1,6 @@
 <?php
 
-namespace HighSolutions\LaravelMailerDaemonCatcher\Test\mocks;
-
+namespace HighSolutions\LaravelMailerDaemonCatcher\tests\mocks;
 
 use HighSolutions\LaravelMailerDaemonCatcher\Contracts\InboxReaderContract;
 use HighSolutions\LaravelMailerDaemonCatcher\Models\MailerDaemonMessage;

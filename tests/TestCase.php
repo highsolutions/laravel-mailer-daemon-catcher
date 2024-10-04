@@ -1,13 +1,13 @@
 <?php
 
-namespace HighSolutions\LaravelMailerDaemonCatcher\Test;
+namespace HighSolutions\LaravelMailerDaemonCatcher\tests;
 
 use HighSolutions\LaravelMailerDaemonCatcher\Contracts\InboxReaderContract;
 use HighSolutions\LaravelMailerDaemonCatcher\MailerDaemonServiceProvider;
-use HighSolutions\LaravelMailerDaemonCatcher\Test\mocks\InboxReaderMock;
+use HighSolutions\LaravelMailerDaemonCatcher\tests\mocks\InboxReaderMock;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
-abstract class TestCase extends OrchestraTestCase
+class TestCase extends OrchestraTestCase
 {
     protected function getPackageProviders($app)
     {

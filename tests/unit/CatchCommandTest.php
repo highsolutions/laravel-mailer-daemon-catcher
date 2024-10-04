@@ -1,13 +1,14 @@
 <?php
 
-namespace HighSolutions\LaravelMailerDaemonCatcher\Test\unit;
+namespace HighSolutions\LaravelMailerDaemonCatcher\tests\unit;
 
 use Carbon\Carbon;
 use HighSolutions\LaravelMailerDaemonCatcher\Contracts\InboxReaderContract;
 use HighSolutions\LaravelMailerDaemonCatcher\Events\MailerDaemonMessageReceived;
-use HighSolutions\LaravelMailerDaemonCatcher\Test\TestCase;
-use HighSolutions\LaravelMailerDaemonCatcher\Test\mocks\InboxReaderFail;
+use HighSolutions\LaravelMailerDaemonCatcher\tests\TestCase;
+use HighSolutions\LaravelMailerDaemonCatcher\tests\mocks\InboxReaderFail;
 use Illuminate\Support\Facades\Event;
+use PHPUnit\Framework\Attributes\Test;
 
 class CatchCommandTest extends TestCase
 {
@@ -22,7 +23,7 @@ class CatchCommandTest extends TestCase
     	return resolve(InboxReaderContract::class);
     }
 
-    /** @test */
+    #[Test]
     public function nothing_happened_when_empty_mailbox()
     {
     	Event::fake();
@@ -32,7 +33,7 @@ class CatchCommandTest extends TestCase
         Event::assertNotDispatched(MailerDaemonMessageReceived::class);
     }
 
-    /** @test */
+    #[Test]
     public function one_message_in_inbox()
     {
     	$this->getInbox()->addMessages([
@@ -59,7 +60,7 @@ class CatchCommandTest extends TestCase
         });
     }
 
-    /** @test */
+    #[Test]
     public function two_messages_in_inbox()
     {
     	$this->getInbox()->addMessages([
@@ -78,7 +79,7 @@ class CatchCommandTest extends TestCase
         Event::assertDispatched(MailerDaemonMessageReceived::class, 2);
     }
 
-    /** @test */
+    #[Test]
     public function no_error_when_email_config_is_invalid()
     {
         app()->bind(InboxReaderContract::class, InboxReaderFail::class);
