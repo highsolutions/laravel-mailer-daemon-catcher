@@ -2,11 +2,10 @@
 
 namespace HighSolutions\LaravelMailerDaemonCatcher\Services;
 
-
 use HighSolutions\LaravelMailerDaemonCatcher\Contracts\InboxReaderContract;
 use HighSolutions\LaravelMailerDaemonCatcher\Models\MailerDaemonMessage;
 use Illuminate\Support\Collection;
-use Webklex\IMAP\Client;
+use Webklex\IMAP\Facades\Client;
 
 class InboxReader implements InboxReaderContract
 {
@@ -20,16 +19,7 @@ class InboxReader implements InboxReaderContract
 
 	protected function connect()
 	{
-		$client = new Client([
-		    'host'          => config('mailer-daemon.host'),
-		    'port'          => intval(config('mailer-daemon.port')),
-		    'encryption'    => config('mailer-daemon.encryption'),
-		    'validate_cert' => config('mailer-daemon.validate_cert'),
-		    'username'      => config('mailer-daemon.username'),
-		    'password'      => config('mailer-daemon.password'),
-		    'protocol'      => config('mailer-daemon.protocol'),
-		]);
-
+		$client = Client::account('default');
 		$client->connect();
 
 		return $client;
