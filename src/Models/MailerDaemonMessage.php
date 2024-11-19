@@ -13,7 +13,7 @@ class MailerDaemonMessage extends Model
 	public static function createFromIMAP($message)
 	{
 		preg_match_all('/To: (.+)\\r\\n/m', $message->getTextBody(), $recipient, PREG_SET_ORDER, 0);
-		preg_match_all('/Date: (.+)\\r\\n/m', $message->getHeader(), $date, PREG_SET_ORDER, 0);
+		preg_match_all('/Date: (.+)\\r\\n/m', $message->getHeader()->raw, $date, PREG_SET_ORDER, 0);
 		preg_match_all('/Subject: (.+)\\r\\n/m', $message->getTextBody(), $subject, PREG_SET_ORDER, 0);
 
 		return new static([

@@ -103,6 +103,10 @@ vendor/bin/phpunit
 Changelog
 ---------
 
+2.1.0
+* Support multiple folders, not only INBOX
+* Fix bug with reading date from emails
+
 2.0.0
 * Support Laravel 9.x, 10.x, and 11.x and Webklex/IMAP ^5.3
 

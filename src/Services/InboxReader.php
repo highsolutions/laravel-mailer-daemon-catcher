@@ -29,19 +29,21 @@ class InboxReader implements InboxReaderContract
 	{
 		$return = [];
 
-		$folder = $client->getFolder('INBOX');
+		$folders = $client->getFolders();
+		
+		foreach($folders as $folder){
+			$messages = $folder->query()
+				->unseen()
+				->whereText('Daemon')
+				->get();
 
-		$messages = $folder->query()
-			->unseen()
-			->whereText('Daemon')
-			->get();
+			foreach($messages as $message)
+			{
+				if(! $this->isMailerDaemonMessage($message))
+					continue;
 
-		foreach($messages as $message)
-		{
-			if(! $this->isMailerDaemonMessage($message))
-				continue;
-
-			$return []= MailerDaemonMessage::createFromIMAP($message);
+				$return []= MailerDaemonMessage::createFromIMAP($message);
+			}
 		}
 
 		return $return;
