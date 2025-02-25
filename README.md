@@ -103,6 +103,9 @@ vendor/bin/phpunit
 Changelog
 ---------
 
+2.2.0
+* Support Laravel 12.x
+
 2.1.0
 * Support multiple folders, not only INBOX
 * Fix bug with reading date from emails
